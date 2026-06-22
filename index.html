@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Chat App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- API Key Setup Banner -->
+  <div id="apikey-banner">
+    <div id="banner-title">🔑 Setup your AI Provider</div>
+    <div id="banner-row">
+      <select id="provider-select" onchange="onProviderChange()">
+        <option value="">-- Select AI Provider --</option>
+        <option value="anthropic">🤖 Anthropic (Claude)</option>
+        <option value="gemini">✨ Google (Gemini)</option>
+      </select>
+      <input id="apikey-input" type="password" placeholder="Paste your API key here..." disabled />
+      <button id="save-btn" onclick="saveKey()" disabled>Save Key</button>
+    </div>
+    <div id="banner-hint"></div>
+  </div>
+
+  <!-- App Container -->
+  <div id="app">
+
+    <!-- Top Bar -->
+    <div id="topbar">
+      <div id="topbar-left">
+        <div id="avatar">🤖</div>
+        <div>
+          <div id="app-title">AI Chat</div>
+          <div id="status">
+            <span id="status-dot"></span>
+            <span id="status-text">Set up your API key to start</span>
+          </div>
+        </div>
+      </div>
+      <div id="topbar-right">
+        <span id="provider-badge"></span>
+        <button id="clear-btn" onclick="clearChat()">🗑️ Clear</button>
+      </div>
+    </div>
+
+    <!-- Messages Area -->
+    <div id="messages">
+      <div class="msg-row ai">
+        <div class="bubble-avatar">🤖</div>
+        <div class="bubble-wrap">
+          <div class="bubble ai">👋 Hello! Select your AI provider and paste your API key above to start chatting.</div>
+          <div class="bubble-time" id="init-time"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Input Bar -->
+    <div id="inputbar">
+      <textarea
+        id="msg-input"
+        rows="1"
+        placeholder="Type a message..."
+        oninput="autoResize(this)"
+        onkeydown="handleKey(event)"
+        disabled
+      ></textarea>
+      <button id="send-btn" onclick="sendMessage()" disabled title="Send">➤</button>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
